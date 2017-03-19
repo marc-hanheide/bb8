@@ -309,13 +309,32 @@
 		}
 	};
 
+	const handleClickEvent = function(event) {
+		event.preventDefault();
+		const x = event.clientX - elJoypad.offsetLeft;
+		const y = event.pageY - elJoypad.offsetTop;
+		// Notes: x and y are swapped here in order to get clockwise theta from Y-axis.
+		const theta = Math.PI - Math.atan2(x - radius, y - radius);
+		const degrees = theta * (180 / Math.PI);
+		const tx = Math.abs(x - radius);
+		const ty = Math.abs(y - radius);
+		let speed = Math.sqrt(Math.pow(tx, 2) + Math.pow(ty, 2));
+		speed = speed / 150.0 * 255.0;
+		console.log('event: ' + x + ', ' + y + ', d: ' + degrees + ' speed: ' + speed);
+		if (state.aim) {
+			roll(Math.round(degrees), 0, 1);
+		} else {
+			roll(Math.round(degrees), Math.round(speed), 1);
+		}
+	};
+
 	elJoypad.ontouchstart = function(event) {
 		handleTouchEvent(event);
 	};
 
 	elJoypad.onmousedown = function(event) {
 		console.log('mousedown');
-		handleTouchEvent(event);
+		handleClickEvent(event);
 	};
 
 	elJoypad.ontouchmove = function(event) {
