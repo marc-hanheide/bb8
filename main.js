@@ -313,7 +313,8 @@
 		handleTouchEvent(event);
 	};
 
-	elJoypad.onclick = function(event) {
+	elJoypad.onmousedown = function(event) {
+		console.log('mousedown');
 		handleTouchEvent(event);
 	};
 
@@ -323,6 +324,12 @@
 
 	elJoypad.ontouchend = function(event) {
 		event.preventDefault();
+		stopRolling();
+	};
+
+	elJoypad.onmouseup = function(event) {
+		event.preventDefault();
+		console.log('mouseup');
 		stopRolling();
 	};
 
