@@ -313,6 +313,10 @@
 		handleTouchEvent(event);
 	};
 
+	elJoypad.onclick = function(event) {
+		handleTouchEvent(event);
+	};
+
 	elJoypad.ontouchmove = function(event) {
 		handleTouchEvent(event);
 	}
