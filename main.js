@@ -336,6 +336,12 @@
 		console.log('mousedown');
 		handleClickEvent(event);
 	};
+	
+	elJoypad.onmousemove = function(event) {
+		if(event.buttons > 0) {
+			handleClickEvent(event);
+		}
+	};
 
 	elJoypad.ontouchmove = function(event) {
 		handleTouchEvent(event);
